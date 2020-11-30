@@ -1,35 +1,39 @@
 import React from 'react';
 import * as API from './API';
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
+import { MapContainer, Marker, Popup, TileLayer, L } from 'react-leaflet';
 import { Icon } from 'leaflet';
 
-class Map extends React.Component {
-  locations = this.props.data.map((meteorite) => {
-    return [meteorite.geolocation.latitude, meteorite.geolocation.longitude];
-  });
-
-  position = this.locations[0];
-
-  map = L.map('mapid').setView(this.position, 13);
-
+class MapDiv extends React.Component {
   render() {
+    const locations = this.props.data.map((meteorite) => {
+      return [
+        parseFloat(meteorite.geolocation.latitude),
+        parseFloat(meteorite.geolocation.longitude),
+      ];
+    });
+
+    const position = locations[0] || [0, 0];
     return (
       <div id='mapid'>
-        {this.map}
-        {/* <MapContainer center={this.position} zoom={13} scrollWheelZoom={false}>
+        <MapContainer
+          key={position[0]}
+          center={position}
+          zoom={1}
+          scrollWheelZoom={false}
+        >
           <TileLayer
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
           />
-          <Marker position={this.position}>
+          <Marker position={position}>
             <Popup>
               A pretty CSS3 popup. <br /> Easily customizable.
             </Popup>
           </Marker>
-        </MapContainer> */}
+        </MapContainer>
       </div>
     );
   }
 }
 
-export default Map;
+export default MapDiv;

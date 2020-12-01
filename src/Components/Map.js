@@ -32,8 +32,7 @@ class MapDiv extends React.Component {
     const outerBounds = [
       [50.505, -29.09],
       [52.505, 29.09],
-    ]
-
+    ];
 
     return (
       <div id='mapid'>
@@ -43,7 +42,6 @@ class MapDiv extends React.Component {
           zoom={2}
           scrollWheelZoom={false}
           bounds={outerBounds}
-
         >
           <TileLayer
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -53,7 +51,7 @@ class MapDiv extends React.Component {
           />
           {this.pinGenerator(locations)}
         </MapContainer>
-      </div >
+      </div>
     );
   }
 }

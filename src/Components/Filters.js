@@ -3,65 +3,58 @@ import * as API from './API';
 
 class Filters extends React.Component {
   state = {
-    filter: "name",
+    filter: 'name',
     query: null,
     limit: 5,
   };
 
   render() {
     return (
-      <div>
-        Filters <br />
+      <div className='form'>
+        <div className='filtersHeader'>Filters </div>
+
         <form>
-          <label htmlFor='filter'>
-            Search Term
-            <select
-              className='filter'
-              name='filter'
-              id='filter'
-              onChange={this.filterHandler}
+          <div className='filter'>
+            <label htmlFor='filter'>
+              Search Term
+              <select name='filter' id='filter' onChange={this.filterHandler}>
+                <option value='name'>Name</option>
+                <option value='year'>Year</option>
+                <option value='mass'>Mass</option>
+              </select>
+            </label>
+          </div>
+
+          <div className='query'>
+            <input type='text' id='query' onChange={this.queryHandler} />
+          </div>
+
+          <div className='limit'>
+            <label htmlFor='limit'>
+              Result Limit
+              <select name='limit' id='limit' onChange={this.limitHandler}>
+                <option value='5'>5</option>
+                <option value='10'>10</option>
+                <option value='20'>20</option>
+                <option value='50'>50</option>
+              </select>
+            </label>
+          </div>
+          <div className='searchButton'>
+            <button
+              onClick={(event) => {
+                event.preventDefault();
+                this.props.submitFilter(
+                  this.state.filter,
+                  this.state.query,
+                  this.state.limit
+                );
+                console.log('clicked');
+              }}
             >
-              <option value='name'>Name</option>
-              <option value='year'>Year</option>
-              <option value='mass'>Mass</option>
-            </select>
-          </label>
-          <br />
-          <input
-            className='query'
-            type='text'
-            id='query'
-            onChange={this.queryHandler}
-          />
-          <br /><br />
-          <label htmlFor='limit'>
-            Result Limit
-            <select
-              className='limit'
-              name='limit'
-              id='limit'
-              onChange={this.limitHandler}
-            >
-              <option value='5'>5</option>
-              <option value='10'>10</option>
-              <option value='20'>20</option>
-              <option value='50'>50</option>
-            </select>{' '}
-          </label>
-          <br /><br />
-          <button
-            onClick={(event) => {
-              event.preventDefault();
-              this.props.submitFilter(
-                this.state.filter,
-                this.state.query,
-                this.state.limit
-              );
-              console.log('clicked');
-            }}
-          >
-            Search
-          </button>
+              Search
+            </button>
+          </div>
         </form>
       </div>
     );

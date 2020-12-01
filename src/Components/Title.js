@@ -1,9 +1,9 @@
 const Title = () => {
-    return (
-        <div>
-            <h1>Meteorite Map</h1>
-        </div>
-    )
-}
+  return (
+    <div className='title'>
+      <h1>Meteorite Map</h1>
+    </div>
+  );
+};
 
 export default Title;

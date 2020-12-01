@@ -19,30 +19,41 @@ class MapDiv extends React.Component {
     }
     return locationsMarkers;
   };
+
   render() {
+    console.log(this.props.data);
     const locations = this.props.data.map((meteorite) => {
       return [
         parseFloat(meteorite.geolocation.latitude),
         parseFloat(meteorite.geolocation.longitude),
       ];
     });
-    console.log(locations);
+
+    const outerBounds = [
+      [50.505, -29.09],
+      [52.505, 29.09],
+    ]
+
 
     return (
       <div id='mapid'>
         <MapContainer
           key={locations[0] || 'chips'}
           center={locations[0] || [0.0, 0.0]}
-          zoom={1}
+          zoom={2}
           scrollWheelZoom={false}
+          bounds={outerBounds}
+
         >
           <TileLayer
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+            noWrap={true}
+            fitBounds={0}
           />
           {this.pinGenerator(locations)}
         </MapContainer>
-      </div>
+      </div >
     );
   }
 }

@@ -3,9 +3,9 @@ import * as API from './API';
 
 class Filters extends React.Component {
   state = {
-    filter: null,
+    filter: "name",
     query: null,
-    limit: null,
+    limit: 5,
   };
 
   render() {
@@ -21,27 +21,10 @@ class Filters extends React.Component {
               id='filter'
               onChange={this.filterHandler}
             >
-              <option value='none'>None</option>
               <option value='name'>Name</option>
               <option value='year'>Year</option>
               <option value='mass'>Mass</option>
             </select>
-          </label>
-          <br />
-          <label htmlFor='limit'>
-            Result Limit
-            <select
-              className='limit'
-              name='limit'
-              id='limit'
-              onChange={this.limitHandler}
-            >
-              <option value='0'>0</option>
-              <option value='5'>5</option>
-              <option value='10'>10</option>
-              <option value='20'>20</option>
-              <option value='50'>50</option>
-            </select>{' '}
           </label>
           <br />
           <input
@@ -50,7 +33,22 @@ class Filters extends React.Component {
             id='query'
             onChange={this.queryHandler}
           />
-          <br />
+          <br /><br />
+          <label htmlFor='limit'>
+            Result Limit
+            <select
+              className='limit'
+              name='limit'
+              id='limit'
+              onChange={this.limitHandler}
+            >
+              <option value='5'>5</option>
+              <option value='10'>10</option>
+              <option value='20'>20</option>
+              <option value='50'>50</option>
+            </select>{' '}
+          </label>
+          <br /><br />
           <button
             onClick={(event) => {
               event.preventDefault();

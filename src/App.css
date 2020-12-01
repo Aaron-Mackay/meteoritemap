@@ -24,8 +24,8 @@
 }
 
 #mapid {
-  height: 400px;
-  width: 600px;
+  height: 600px;
+  width: 1000px;
   margin: 20px auto;
   outline: solid blue 2px;
 }
@@ -33,7 +33,12 @@
 .filter {
   margin: 20px;
 }
+
+.limit {
+  margin: 20px;
+}
+
 .leaflet-container {
-  height: 400px;
-  width: 600px;
+  height: 600px;
+  width: 1000px
 }
